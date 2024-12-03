@@ -1,0 +1,127 @@
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 75px 20px 10px 30px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  padding-top: 40px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 28px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.sidebar header{
+  flex: inline-block;
+  margin: 0;
+  line-height: 125px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+  background: linear-gradient(to right, white 50%, red 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  user-select: none;
+} 
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: center;
+  width: 40%;
+  padding: 5px;
+}
+
+.row:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+h1{
+  font-size:20px;
+  font-family: Times New Roman;
+  color:#F1B52A;
+  
+}
+
+body {
+  padding: 25px;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+}
+
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+#lightMode {
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: underline dotted #fff; 
+    font-family: "Arial", sans-serif; 
+    border: 2px dotted red; 
+    border-width: 4px; 
+    border-radius: 5px; 
+}
+
+#lightMode:hover {
+    background-color: #333;
+    color: white; 
+    text-decoration: none; 
+}

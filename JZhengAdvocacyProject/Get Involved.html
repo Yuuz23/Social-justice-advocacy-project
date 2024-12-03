@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Filmsnow </title>
+  <link href="reset-webview.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="image/icon.png">
+</head>
+
+<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <header>Filmsnow</header>
+  <button id="lightMode" onclick="myFunction()">Toggle Light Mode</button>
+    <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="Movies.html"><i class="fa fa-film"></i> Movies</a>
+    <a href="News.html"><i class="fa fa-fw fa-search"></i>News</a>
+    <a href="Get Involved.html"><i class="fa fa-users"></i>Get Involved</a>
+    <a href="Contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open</button>  
+</div>
+
+<script src="index.js"></script>
+
+<div class="petition" id="petition">
+  <h2>Sign Our Petition 📢</h2>
+  <div class="petition-container">
+    <div class="petition-para">
+      <table for="total-signatures">Total count of signatures:</table>
+<span id="total-signatures">0</span>
+    </div>
+
+    <table>
+      <tr>
+        <td><p>We, the undersigned, urge you to take immediate action to combat racism by implementing anti-discrimination policies, promoting diversity and inclusion, providing education and training, amplifying marginalized voices, and holding individuals and institutions accountable for acts of racism.
+Racism perpetuates discrimination, inequality, and injustice in our society, and it is our collective responsibility to end it. We call on you to join us in creating a more just, inclusive, and equitable society for all.</p></td>
+        <td>
+          <div id = "signatures-list">
+<!--              <p>🖊️ Jingyu from Brooklyn supports this.</p> -->
+          </div>
+        </td>
+      </tr>
+    </table>
+    <form id="petition-form" class="form-container">
+    <label for="name">Name:</label>
+    <input type="name" id="name" name="name" required>
+    <label for="hometown">Hometown:</label>
+    <input type="hometown" id="hometown" name="hometown" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <button id="sign-now-button" class="button-container">Sign Now</button></br>  
+  </form>
+  </div>
+</div>
+  <form id="sign-petition" title="sign-petition">
+  </form>
+
+  <div id="thank-you-modal" class="modal">
+  <div class="modal-content">
+    <button class="close" type="button">Close</button>
+    <img id="modal-image" src="https://i.pinimg.com/originals/4f/92/fe/4f92fe4ee07e79bc3495e41bb5ae1bd3.gif">
+     <p id="modal-text"><span id="user-name"></span></p>
+  </div>
+</div>
+  
+
+  <style>
+    table{
+      width:100%;
+      table-layout:fixed;
+    }
+    .form-container {
+      margin-top: 20px;
+      position: fixed;
+      bottom: 20%;
+      left: 0;
+      right: 0;
+      padding: 20px;
+    }
+    .button-container {
+      font-size: 15px;
+      padding: 7px 7px; 
+    }
+    .petition-container {
+      display: flex;
+      flex-direction: row;
+    }
+    .petition-para {
+      flex: 1;
+      padding: 20px;
+    }
+    .signatures-list {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+    }
+    .invalid-input {
+      border: 1px solid red;
+    }
+
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.4); 
+    }
+    .modal-content {
+      background-color: #FFA551;
+      margin: 15% auto; 
+      padding: 20px;
+      border: 1px solid #888;
+      width: 60%; 
+    }
+    .close {
+      color: darkgray;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .modal-image{
+      transition: transform 0.5s ease;
+    }
+  </style>
+  
+<script>
+let totalSignatures = 0;
+
+document.getElementById('sign-now-button').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  let nameInput = document.getElementById('name');
+  let hometownInput = document.getElementById('hometown');
+  let emailInput = document.getElementById('email');
+  
+  let isValid = true;
+  let nameRegex = /[0-9\s]/g;
+
+  let modalText = document.getElementById('modal-text');
+  modalText.textContent = 'Thank you so much, ' + nameInput.value + '! Your support from ' + hometownInput.value + ' is greatly appreciated!';
+
+  if (nameInput.value === '' || nameRegex.test(nameInput.value)) {
+    nameInput.classList.add('invalid-input');
+    isValid = false;
+  } else {
+    nameInput.classList.remove('invalid-input');
+  }
+
+  if (hometownInput.value === '' || nameRegex.test(hometownInput.value)) {
+    hometownInput.classList.add('invalid-input');
+    isValid = false;
+  } else {
+    hometownInput.classList.remove('invalid-input');
+  }
+
+  if (emailInput.checkValidity() === false) {
+    emailInput.classList.add('invalid-input');
+    isValid = false;
+  } else {
+    emailInput.classList.remove('invalid-input');
+  }
+
+  if (isValid) {
+    let signaturesList = document.getElementById('signatures-list');
+    let signatureItem = document.createElement('p');
+    signatureItem.textContent = '🖊️ ' + nameInput.value + ' from ' + hometownInput.value + ' supports this.';
+    signaturesList.appendChild(signatureItem);
+
+    document.getElementById('petition-form').reset();
+    totalSignatures++;
+    document.getElementById('total-signatures').textContent = totalSignatures;
+
+    let modal = document.getElementById('thank-you-modal');
+    modal.style.display = "block";
+    let closeBtn = document.getElementsByClassName("close")[0];
+
+    setTimeout(function() {
+      modal.style.display = "none";
+    }, 3000);
+
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    const myImage = document.getElementById("modal-image");
+    let scale = 1;
+    let direction = 1;
+
+    setInterval(() => {
+      if (scale >= 1) {
+        direction = -1;
+      } else if (scale <= 1) {
+        direction = 1;
+      }
+      scale += 0.1 * direction;
+      myImage.style.transform = `scale(${scale})`;
+    }, 300);
+  }
+});
+
+
+</script>
+
+
+
+</body>
+</html>
